@@ -1,2 +1,5 @@
 *.json
 .history/
+.vscode/
+.idea/
+*.exe
