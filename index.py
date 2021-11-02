@@ -12,15 +12,37 @@ def resolve(n):
     return res(n)
 
 
-limit = int(input("Enter limit: "))
+limit = int(input("Enter positive integral limit: "))
 for x in range(1,limit+1):
     ranges[x] = []
     resolve(x)
 
 for key in ranges.keys():
     if ranges[key][len(ranges[key])-1] != 1:
-        print("Key exploiting rule", key, ranges[key])
+        print("Key disproving conjecture: ", key, ranges[key])
 else:
-    print("No key exploiting rule found")
-print(ranges)
+    print("No key disproving conjecture found.")
 
+m = []
+for x in ranges.keys():
+    m.append({ x: len(ranges[x]) })
+
+vals = []
+for z in m:
+    vals.append(list(z.values())[0])
+maxim = m[vals.index(max(vals))]
+
+h = []
+for g in ranges.keys():
+    h.append({ g: max(ranges[g]) })
+
+vals = []
+for y in h:
+    vals.append(list(y.values())[0])
+highest = h[vals.index(max(vals))]
+
+print("Max steps: ", maxim);
+print("Highest step: ", highest);
+
+if str(input("View ranges? (Y/N) ")).lower() == "y":
+    print(ranges)
