@@ -1,3 +1,8 @@
+"""
+    Collatz conjecture
+    @author Priyanshu Ranjan (ranjanistic)
+ 
+"""
 ranges = {}
 
 def resolve(n):
@@ -21,7 +26,7 @@ for key in ranges.keys():
     if ranges[key][len(ranges[key])-1] != 1:
         print("Key disproving conjecture: ", key, ranges[key])
 else:
-    print("No key disproving conjecture found.")
+    print("No keys disproving conjecture found.")
 
 m = []
 for x in ranges.keys():

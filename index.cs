@@ -19,8 +19,6 @@ namespace CollatzConjecture {
                 counter++;
             }
 
-            Console.WriteLine("It took " + counter + " steps to reach 1.");
-
             if (counter > max) {
                 max = counter;
             }

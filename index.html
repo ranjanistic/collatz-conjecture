@@ -1,0 +1,92 @@
+<!-- 
+    Collatz conjecture
+
+    @author Priyanshu Ranjan (ranjanistic)
+ -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Collatz Conjecture</title>
+    </head>
+    <body>
+        Enter positive integral limit:
+        <input type="number" id="limit" value="10" min="1" placeholder="Minimum 1" /><br />
+        <button id="submit-limit">Submit</button><br /><br />
+        Keys disproving conjecture: <strong id="disproving"></strong><br />
+        Max steps: <strong id="max"></strong><br />
+        Highest step: <strong id="highest"></strong><br /><br />
+        <button id="view-ranges">View ranges</button><br />
+        Ranges: <strong id="ranges"></strong>
+        <script>
+            document.getElementById("submit-limit").onclick = (_) => {
+                const ranges = {};
+                document.getElementById("ranges").innerHTML = "";
+                const resolve = (n) => {
+                    const res = (num) => {
+                        const x = num % 2 !== 0 ? 3 * num + 1 : num / 2;
+                        ranges[n].push(x);
+                        return x === 1 ? 1 : res(x);
+                    };
+                    return res(n);
+                };
+
+                const limit = Number(
+                    document.getElementById("limit").value || 1
+                );
+                for (let x = 1; x <= limit; x++) {
+                    ranges[x] = [];
+                    resolve(x);
+                }
+                document.getElementById(
+                    "disproving"
+                ).innerHTML = JSON.stringify(
+                    Object.keys(ranges).filter(
+                        (key) => ranges[key][ranges[key].length - 1] !== 1
+                    )
+                );
+                const max = Object.keys(ranges).map((x) => ({
+                    [x]: ranges[x].length,
+                }))[
+                    Object.keys(ranges)
+                        .map((x) => ({ [x]: ranges[x].length }))
+                        .map((x) => Object.values(x)[0])
+                        .indexOf(
+                            Math.max(
+                                ...Object.keys(ranges)
+                                    .map((x) => ({ [x]: ranges[x].length }))
+                                    .map((x) => Object.values(x)[0])
+                            )
+                        )
+                ];
+                const highest = Object.keys(ranges).map((x) => ({
+                    [x]: Math.max(...ranges[x]),
+                }))[
+                    Object.keys(ranges)
+                        .map((x) => ({ [x]: Math.max(...ranges[x]) }))
+                        .map((x) => Object.values(x)[0])
+                        .indexOf(
+                            Math.max(
+                                ...Object.keys(ranges)
+                                    .map((x) => ({
+                                        [x]: Math.max(...ranges[x]),
+                                    }))
+                                    .map((x) => Object.values(x)[0])
+                            )
+                        )
+                ];
+                document.getElementById("max").innerHTML = JSON.stringify(max);
+                document.getElementById("highest").innerHTML = JSON.stringify(
+                    highest
+                );
+                document.getElementById("view-ranges").onclick = (_) => {
+                    document.getElementById(
+                        "ranges"
+                    ).innerHTML = JSON.stringify(ranges);
+                };
+            };
+        </script>
+    </body>
+</html>

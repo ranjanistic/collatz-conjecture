@@ -1,3 +1,8 @@
+/**
+ * Collatz conjecture
+ * @author Priyanshu Ranjan (ranjanistic)
+ */
+
 const readline = require("readline");
 const input = readline.createInterface({
     input: process.stdin,
