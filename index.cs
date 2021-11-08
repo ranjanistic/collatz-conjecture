@@ -1,3 +1,9 @@
+
+/*
+    Collatz conjecture
+
+    @author Priyanshu Ranjan (ranjanistic)
+*/
 using System;
 
 namespace CollatzConjecture {

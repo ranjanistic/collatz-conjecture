@@ -1,3 +1,8 @@
+/*
+    Collatz conjecture
+
+    @author Priyanshu Ranjan (ranjanistic)
+*/
 #include <iostream>
 #include <vector>
 

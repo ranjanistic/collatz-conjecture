@@ -1,8 +1,9 @@
 
 /**
  * Collatz conjecture
+ * 
  * @author Priyanshu Ranjan (ranjanistic)
- */
+*/
 
 import java.util.*;
 
