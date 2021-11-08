@@ -1,26 +1,92 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 int resolve(int);
-
 int res(int);
-// int res(int num, int &ranges[][], int count) {
-//     int x = num % 2 != 0 ? 3 * num + 1 : num / 2;
-//     ranges[num][count] = x;
-//     return x == 1 ? 1 : res(x, ranges, count+1);
-// };
-// int resolve(int n, int &ranges[][]) {
-//     return res(n, ranges, 0);
-// };
 
-int main(){
+vector<vector<int>> ranges;
+
+int res(int num, int init) {
+    int x = 0;
+    if (num % 2 != 0) {
+        x = num * 3 + 1;
+    }
+    else {
+        x = num / 2;
+    }
+    ranges[init].push_back(x);
+    if (x == 1) {
+        return x;
+    } else {
+        return res(x, init);
+    }
+}
+
+int resolve(int n) {
+    return res(n, n);
+}
+
+int main() {
     int limit;
+    cout << "Enter positive integral limit: ";
     cin >> limit;
-    // int ranges = new int[limit][100000];
-    // for (int i = 1; i <= limit; i++) {
-    //     ranges[i][0] = i;
-    //     resolve(i);
-    // }
+
+    ranges.push_back(vector<int>());
+    for (int i = 1; i <= limit; i++) {
+        ranges.push_back(vector<int>());
+        resolve(i);
+    }
+
+    bool failed = false;
+    for (int r = 1; r < ranges.size(); r++) {
+        if (ranges[r][ranges[r].size() - 1] != 1) {
+            failed = true;
+            cout << "Failed at " << r << ": ";
+            for (int i = 0; i < ranges[r].size(); i++) {
+                cout << ranges[r][i];
+            }
+            cout << endl;
+        }
+    }
+
+    if (!failed) {
+        cout << "No keys disproving conjecture found." << endl;
+    }
+    int maxsteps = 0;
+    int maxpos = 0;
+    for (int r = 1; r < ranges.size(); r++) {
+        if (ranges[r].size() > maxsteps) {
+            maxsteps = ranges[r].size();
+            maxpos = r;
+        }
+    }
+    cout << "Max steps " << maxsteps << " at " << maxpos << endl;
+
+    int highest = 0;
+    int highestpos = 0;
+    for (int r = 1; r < ranges.size(); r++) {
+        for (int i = 0; i < ranges[r].size(); i++) {
+            if (ranges[r][i] > highest) {
+                highest = ranges[r][i];
+                highestpos = r;
+            }
+        }
+    }
+    cout << "Highest step " << highest << " at " << highestpos << endl;
+
+    char yn;
+    cout << "Print ranges? (y/n): ";
+    cin >> yn;
+    if (yn == 'y' || yn == 'Y'){
+        for (int r = 1; r < ranges.size(); r++) {
+            cout << r << ": [";
+            for (int i = 0; i < ranges[r].size(); i++) {
+                cout << ranges[r][i] << ",";
+            }
+            cout << "]" <<endl;
+        }
+    }
     return 0;
 }
