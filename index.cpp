@@ -14,6 +14,10 @@ int res(int);
 vector<vector<int>> ranges;
 
 int res(int num, int init) {
+    if(num < init){
+        ranges[init].insert(ranges[init].end(), ranges[num].begin(), ranges[num].end());
+        return 1;
+    }
     int x = 0;
     if (num % 2 != 0) {
         x = num * 3 + 1;
@@ -61,17 +65,14 @@ int main() {
     }
     int maxsteps = 0;
     int maxpos = 0;
-    for (int r = 1; r < ranges.size(); r++) {
+    int highest = 0;
+    int highestpos = 0;
+    int rangesize = ranges.size();
+    for (int r = 1; r < rangesize; r++) {
         if (ranges[r].size() > maxsteps) {
             maxsteps = ranges[r].size();
             maxpos = r;
         }
-    }
-    cout << "Max steps " << maxsteps << " at " << maxpos << endl;
-
-    int highest = 0;
-    int highestpos = 0;
-    for (int r = 1; r < ranges.size(); r++) {
         for (int i = 0; i < ranges[r].size(); i++) {
             if (ranges[r][i] > highest) {
                 highest = ranges[r][i];
@@ -79,6 +80,7 @@ int main() {
             }
         }
     }
+    cout << "Max steps " << maxsteps << " at " << maxpos << endl;
     cout << "Highest step " << highest << " at " << highestpos << endl;
 
     char yn;

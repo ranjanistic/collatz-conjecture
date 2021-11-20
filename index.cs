@@ -1,4 +1,3 @@
-using System;
 
 /*
     Collatz conjecture
@@ -6,6 +5,7 @@ using System;
     @author Priyanshu Ranjan (ranjanistic)
 */
 
+using System;
 
 namespace CollatzConjecture {
     class Program {
@@ -74,7 +74,11 @@ namespace CollatzConjecture {
                 }
             }
         }
-        Int64 Res(Int64 n, Int64 init){
+        System.Int64 Res(Int64 n, Int64 init){
+            if(n < init){
+                ranges.Get(init).AddRange(ranges.Get(n));
+                return 1;
+            }
             int x = 0;
             if (n % 2 == 0) {
                 x = n / 2;
@@ -88,7 +92,7 @@ namespace CollatzConjecture {
                 return Res(x, init);
             }
         }
-        Int64 Resolve(Int64 num){
+        System.Int64 Resolve(Int64 num){
             return Res(num,num);
         }
     }

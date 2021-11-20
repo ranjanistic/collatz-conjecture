@@ -8,10 +8,15 @@ ranges = {}
 
 def resolve(n):
     def res(num):
-        if (num % 2 != 0):
-            x = (3 * num + 1)
+        if num < n:
+            if ranges[num] and ranges[num].__contains__(1):
+                ranges[n].extend(ranges[num])
+                return 1
+            
+        if num % 2 != 0:
+            x = 3 * num + 1
         else:
-            x = (num // 2)
+            x = num // 2
         ranges[n].append(x)
         return 1 if x == 1 else res(x)
     

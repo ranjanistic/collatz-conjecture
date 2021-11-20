@@ -34,24 +34,24 @@ class Collatz {
         }
         Integer maxsteps = 0;
         Integer maxpos = 0;
-        for (Integer r = 1; r < ranges.size(); r++) {
-            if (ranges.get(r).size() > maxsteps) {
-                maxsteps = ranges.get(r).size();
+        Integer highest = 0;
+        Integer highestpos = 0;
+        Integer rangesize = ranges.size();
+        for (Integer r = 1; r < rangesize; r++) {
+            Integer rangersize = ranges.get(r).size();
+            if (rangersize > maxsteps) {
+                maxsteps = rangersize;
                 maxpos = r;
             }
-        }
-        System.out.println("Max steps " + String.valueOf(maxsteps) + " at " + String.valueOf(maxpos));
-
-        int highest = 0;
-        int highestpos = 0;
-        for (int r = 1; r < ranges.size(); r++) {
-            for (int i = 0; i < ranges.get(r).size(); i++) {
+            for (int i = 0; i < rangersize; i++) {
                 if (ranges.get(r).get(i) > highest) {
                     highest = ranges.get(r).get(i);
                     highestpos = r;
                 }
             }
         }
+        System.out.println("Max steps " + String.valueOf(maxsteps) + " at " + String.valueOf(maxpos));
+
         System.out.println("Highest step " + String.valueOf(highest) + " at " + String.valueOf(highestpos));
 
         System.out.print("Print ranges? (y/n): ");
@@ -67,6 +67,10 @@ class Collatz {
     }
 
     public static int res(int n, int init) {
+        if(n < init){
+            ranges.get(init).addAll(ranges.get(n));
+            return 1;
+        }
         int x = 0;
         if (n % 2 == 0) {
             x = n / 2;

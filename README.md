@@ -13,6 +13,10 @@ g++ -std=c++11 -o index.exe index.cpp && .\index
 ```
 
 ```bash
+scriptcs index.cs
+```
+
+```bash
 go run index.go
 ```
 

@@ -14,6 +14,10 @@ import (
 var ranges [][]int
 
 func res(num int, init int) int {
+	if(num < init){
+		ranges[init] = append(ranges[init], ranges[num]...);
+		return 1;
+	}
 	var x = 0
 	if num%2 != 0 {
 		x = num*3 + 1
