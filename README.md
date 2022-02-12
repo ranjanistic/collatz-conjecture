@@ -3,7 +3,7 @@
 This repository contains programs to execute Collatz Conjecture in several languages & environments.
 
 
-[![Presence on Knotters!](https://img.shields.io/static/v1?label=Knotters&message=Project&color=12e49d&link=https://knotters.org&style=for-the-badge)](https://knotters.org/projects/profile/collatz-conjecture)
+[![Presence on Knotters!](https://img.shields.io/static/v1?label=Knotters&message=Project&color=1657ce&link=https://knotters.org&style=for-the-badge)](https://knotters.org/projects/profile/collatz-conjecture)
 
 All separate language files run separately (Ofcourse).
 
