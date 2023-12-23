@@ -2,9 +2,6 @@
 
 This repository contains programs to execute Collatz Conjecture in several languages & environments.
 
-
-[![Presence on Knotters!](https://img.shields.io/static/v1?label=Knotters&message=Project&color=1657ce&link=https://knotters.org&style=for-the-badge)](https://knotters.org/projects/profile/collatz-conjecture)
-
 All separate language files run separately (Ofcourse).
 
 _All programs assume that the conjecture is true and hence rely their recursion on it. Recursion can fall in infinity if this conjecture is wrong at some number._
